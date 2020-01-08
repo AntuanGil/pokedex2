@@ -1,0 +1,99 @@
+<nav class=" nav navbar navbar-expand-sm bg-danger navbar-dark fixed-top">
+	<div class="container">
+		<a href="/" class="navbar-brand" (click)="ngOnInit()">
+			Pokedex
+		</a>
+	</div>
+</nav>
+<div class="mt-3"> 
+	&nbsp; 
+</div>
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card mb-3" style="max-width: 540px;">
+				<div class="row no-gutters">
+					<div class="col-md-6">
+						<img [src]="URL_IAMGE+_id+'.png'" class="card-img">
+					</div>
+					<div class="col-md-6">
+						<div class="card-body">
+							<h4 class="card-title text-uppercase">
+								<font color="RED">
+									{{ pokemon.name }}
+								</font>
+							</h4>
+							<p class="card-text">
+								<small class="text-muted">
+									Altura: {{ pokemon.height }} <br>
+									Peso: {{ pokemon.weight }} lbs.<br>
+									Tipo:
+									<span class="badge badge-pill mr-1" *ngFor='let typ of pokemon.types' [ngStyle]="setMyStyles(typ.type.name)"> 
+										{{ typ.type.name }} 
+									</span>
+								</small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-body">
+					<h5>
+						<span class="card-title">
+							ESTADISTICAS
+						</span>
+					</h5>
+					<h3 class="card-title" *ngFor="let sta of pokemon['stats']">{{ sta.stat.name }}
+						<span class="badge badge-pill mr-1 bg-danger">
+							{{ sta.base_stat }}
+						</span>
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">
+						EXPERIENCIA
+						<span class="badge-primary badge-pill mr-1">
+							{{ pokemon.base_experience }}
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">
+						HABILIDADES
+					</h5>
+					<p class="card-text" *ngFor="let det of pokemon['abilities']">
+						{{ det.ability.name }}
+					</p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">
+						<span>
+							EVOLUCIONES
+						</span>
+					</h5>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="card col-4 col-md-4 col-sm-4 col-xl-4" *ngFor="let evol of EvolutionChain">
+						<img [src]="evol.image" class="card-img-top" *ngIf="evol.image">
+						<div class="card-body">
+							<h5 class="card-title text-uppercase text-center" style="font-size:.8em;">
+								{{ evol.name }}
+							</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
